@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { singleProduct } from '../testData';
+// import { singleProduct } from '../testData';
 import { getProduct } from '../redux/actions/productActions';
 import { useSelector,useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
@@ -15,13 +15,13 @@ const SingleProduct = () => {
     dispatch(getProduct(productId))
   },[dispatch,productId])
   const singlProduct=useSelector((state)=>state.product)
-  const {product,loading}=singlProduct
-  console.log(product);
+  const {loading}=singlProduct
+  // console.log(product);
   if (loading){
     return <Loader/>
   }
 
-  const {name,price,description,category,image}=singleProduct
+  const {name,price,description,category,image}=singlProduct?.product
   return (
     <ItemWrapper>
     <Link to="/"><BackButton>Back to All</BackButton></Link>
