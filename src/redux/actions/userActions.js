@@ -13,7 +13,7 @@ import {
 export const register = (name, email, password) => async (dispatch) => {
   dispatch({ type: USER_REGISTER_REQUEST, payload: {name, email, password } });
   try {
-    const { data } = await Axios.post('http://localhost:5000/api/v1/auth/register', {
+    const { data } = await Axios.post('https://online-eats.herokuapp.com/api/v1/auth/register', {
       name,
       email,
       password,
@@ -35,7 +35,7 @@ export const register = (name, email, password) => async (dispatch) => {
 export const login = (email, password) => async (dispatch) => {
   dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } });
   try {
-    const { data } = await Axios.post('http://localhost:5000/api/v1/auth/login', { email, password });
+    const { data } = await Axios.post('https://online-eats.herokuapp.com/api/v1/auth/login', { email, password });
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
     localStorage.setItem('userInfo', JSON.stringify(data));
   } catch (error) {
@@ -51,7 +51,7 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 export const logout = () => async (dispatch) => {
-  await Axios.post('http://localhost:5000/api/v1/auth/logout');
+  await Axios.post('https://online-eats.herokuapp.com/api/v1/auth/logout');
   localStorage.removeItem('userInfo');
   localStorage.removeItem('cartItems');
   dispatch({ type: USER_SIGNOUT });
