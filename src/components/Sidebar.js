@@ -2,18 +2,28 @@ import React from "react";
 import styled from "styled-components";
 import { FaTimes } from "react-icons/fa";
 import { links, socials } from ".././data";
+import { Link } from "react-router-dom";
 import Social from "./Social";
+
+import { logout } from "../redux/actions/userActions";
 import SidebarItem from "./SidebarItem";
 import { closeSidebar } from "../redux/actions/sideBarActions";
 import { useDispatch, useSelector } from "react-redux";
 const Sidebar = () => {
   const dispatch = useDispatch();
+
   const sidebar = useSelector((state) => state.sidebar);
   const isSidebarOpen = sidebar.sideBarOpen;
   const closeSideBar = () => {
     dispatch(closeSidebar());
   };
-//   const userInfo = useSelector((state) => state.userLogin.userInfo);
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
+
+  // console.log(userInfo);
+  const signout = () => {
+    dispatch(logout());
+    dispatch(closeSidebar);
+  };
   return (
     <SidebarWrapper open={isSidebarOpen ? "open" : ""}>
       <Aside>
@@ -25,6 +35,25 @@ const Sidebar = () => {
             return <SidebarItem key={link.id} {...link} />;
           })}
         </SidebarLinks>
+        <Links>
+          {userInfo ? (
+            <NavBarLink onClick={signout}>Logout</NavBarLink>
+          ) : (
+            <>
+              <Link to="/login">
+                <NavBarLink onClick={closeSideBar}>Login</NavBarLink>
+              </Link>
+              <Link to="/register">
+                <NavBarLink onClick={closeSideBar}>Register</NavBarLink>
+              </Link>
+            </>
+          )}
+          <Link to="/account">
+            <NavBarLink onClick={closeSideBar}>
+              {userInfo ? userInfo?.user?.name : "Account"}
+            </NavBarLink>
+          </Link>
+        </Links>
         <Socials>
           {socials.map((social) => {
             return <Social key={social.id} {...social} />;
@@ -39,7 +68,7 @@ const SidebarWrapper = styled.div`
   background: rgba(0, 0, 0, 0.1);
   // background:yellow;
   position: fixed;
-  z-index: 1;
+  z-index: 2000;
   top: 55px;
   left: 0;
   height: 92vh;
@@ -83,4 +112,31 @@ const Icon = styled.div`
   }
 `;
 
+const Links = styled.ul``;
+const NavBarLink = styled.li`
+  margin-bottom: 15px;
+  cursor: pointer;
+  width: fit-content;
+  position: relative;
+  /* z-index:2000; */
+  &::after {
+    content: "";
+    position: absolute;
+    width: 98%;
+    z-index: 1000;
+    left: 2px;
+    height: 4px;
+    background: #082032;
+    border-radius: 6px;
+    top: 28px;
+    opacity: 0;
+    &:hover {
+      &::after {
+        opacity: 1;
+      }
+    }
+
+    /* opacity: ${(props) => props.activeClassName && 1}; */
+  }
+`;
 export default Sidebar;

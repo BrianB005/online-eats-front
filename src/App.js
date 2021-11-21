@@ -6,6 +6,7 @@ import Register from "./pages/register";
 import Login from "./pages/login";
 import SingleProduct from "./pages/singleProduct";
 import Home from "./pages/Home";
+import Sidebar from "./components/Sidebar";
 import Account from "./pages/Account";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -22,6 +23,7 @@ function App() {
   return (
     <Router>
       <Navbar />
+      <Sidebar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/add" element={<AddProduct />} />

@@ -14,8 +14,9 @@ const Wrapper = styled.div`
   background: ${(props) => (props.type === "success" ? "green" : "lightred")};
   color: white;
   z-index: 1000;
-  /* margin-top: 80px; */
+
   max-width: 600px;
+  /* position: absolute; */
   margin-left: auto;
   margin-right: auto;
 `;

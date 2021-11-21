@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 // import FlashMessage from 'react-flash-message'
@@ -14,7 +14,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo, loading, error } = userLogin;
-  const [showAlert, setShowAlert] = useState(false);
+  const [showAlert, setShowAlert] = useState(true);
   // console.log(userInfo);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,9 +23,11 @@ const Login = () => {
     navigate("/");
   }
 
-  if (error) {
-    setShowAlert(true);
-  }
+  useEffect(() => {
+    if (error) {
+      setShowAlert(true);
+    }
+  }, [error]);
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(login(email, password));
@@ -33,8 +35,8 @@ const Login = () => {
 
   return (
     <Container>
+      {showAlert && <Alert type="danger" title={error} />}
       <Wrapper>
-        {showAlert && <Alert type="danger" mtitle={error} />}
         <Title>LOGIN</Title>
 
         <Logo>OnlineEats</Logo>

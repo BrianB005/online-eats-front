@@ -23,7 +23,8 @@ import {
 } from "../constants/productConstants";
 import Axios from "axios";
 
-export const getProducts = (searchTerm) => async (dispatch) => {
+export const getProducts = (searchTerm) => async (dispatch, getState) => {
+  const category = getState().category?.category;
   if (searchTerm) {
     dispatch({ type: SEARCH_PRODUCTS_REQUEST });
     try {
@@ -31,6 +32,7 @@ export const getProducts = (searchTerm) => async (dispatch) => {
         `https://online-eats.herokuapp.com/api/v1/products/search?search_query=${searchTerm}`
       );
       dispatch({ type: SEARCH_PRODUCTS_SUCCESS, payload: data });
+      dispatch({ type: GET_PRODUCTS_SUCCESS, payload: data });
     } catch (error) {
       dispatch({
         type: SEARCH_PRODUCTS_FAIL,
@@ -41,13 +43,13 @@ export const getProducts = (searchTerm) => async (dispatch) => {
       });
     }
   }
-  dispatch({ type: GET_PRODUCTS_REQUEST });
+  dispatch({ type: GET_PRODUCTS_REQUEST, payload: category });
   try {
     const { data } = await Axios.get(
       "https://online-eats.herokuapp.com/api/v1/products"
     );
     // console.log(data);
-    dispatch({ type: GET_PRODUCTS_SUCCESS, payload: data });
+    dispatch({ type: GET_PRODUCTS_SUCCESS, payload: data, category });
   } catch (error) {
     dispatch({ type: GET_PRODUCTS_FAIL, payload: error });
   }
@@ -98,31 +100,32 @@ export const addProduct = (product) => async (dispatch, getState) => {
   }
 };
 
-export const updateItem = (product,productId) => async (dispatch, getState) => {
-  // console.log(product._id);
-  const userInfo = getState().userLogin.userInfo;
-  dispatch({ type: UPDATE_PRODUCT_REQUEST, payload: product });
-  try {
-    const { data } = await Axios.put(
-      `https://online-eats.herokuapp.com/api/v1/products/find/${productId}`,
+export const updateItem =
+  (product, productId) => async (dispatch, getState) => {
+    // console.log(product._id);
+    const userInfo = getState().userLogin.userInfo;
+    dispatch({ type: UPDATE_PRODUCT_REQUEST, payload: product });
+    try {
+      const { data } = await Axios.put(
+        `https://online-eats.herokuapp.com/api/v1/products/find/${productId}`,
 
-      product,
-      {
-        headers: {
-          authorization: `Bearer ${userInfo.token}`,
-        },
-      }
-    );
-    dispatch({ type: UPDATE_PRODUCT_SUCCESS });
-    console.log(data);
-  } catch (error) {
-    const failMessage =
-      error.response && error.response.data.msg
-        ? error.response.data.msg
-        : error.message;
-    dispatch({ type: UPDATE_PRODUCT_FAIL, payload: failMessage });
-  }
-};
+        product,
+        {
+          headers: {
+            authorization: `Bearer ${userInfo.token}`,
+          },
+        }
+      );
+      dispatch({ type: UPDATE_PRODUCT_SUCCESS });
+      console.log(data);
+    } catch (error) {
+      const failMessage =
+        error.response && error.response.data.msg
+          ? error.response.data.msg
+          : error.message;
+      dispatch({ type: UPDATE_PRODUCT_FAIL, payload: failMessage });
+    }
+  };
 export const deleteItem = (productId) => async (dispatch, getState) => {
   const userInfo = getState().userLogin.userInfo;
   dispatch({ type: DELETE_PRODUCT_REQUEST, payload: productId });

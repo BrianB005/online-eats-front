@@ -72,7 +72,9 @@ const Navbar = () => {
             </div>
           )}
           <Link to="/account">
-            <NavBarLink>Account</NavBarLink>
+            <NavBarLink>
+              {userInfo ? userInfo?.user?.name : "Account"}
+            </NavBarLink>
           </Link>
         </Links>
         <Right>
@@ -94,7 +96,7 @@ const Wrapper = styled.div`
   height: 55px;
   transition: all 1s linear;
   display: flex;
-  z-index: 1000;
+  z-index: 2000;
   position: fixed;
   top: 0;
   left: 0;
@@ -199,7 +201,9 @@ const NavBarLink = styled.li`
     top: 20px;
     opacity: 0;
     &:hover {
-      opacity: 1;
+      &::after {
+        opacity: 1;
+      }
     }
 
     /* opacity: ${(props) => props.activeClassName && 1}; */
