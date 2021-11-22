@@ -66,7 +66,7 @@ const Register = () => {
             type="password"
             required
           />
-          <Button onClick={handleClick}>
+          <Button onClick={handleClick} disabled={loading}>
             {loading ? "Hold On...." : "REGISTER"}
           </Button>
         </Form>
@@ -146,6 +146,9 @@ const Button = styled.button`
   }
   color: white;
   cursor: pointer;
+  &:disabled {
+    cursor: not-allowed;
+  }
 `;
 const Login = styled.div`
   margin-top: 18px;

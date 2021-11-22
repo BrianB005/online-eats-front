@@ -83,7 +83,9 @@ const Navbar = () => {
             <Link to="/cart">
               <FaShoppingBasket />
             </Link>
-            <CartAmount>{cart?.cartItems?.length}</CartAmount>
+            <CartAmount>
+              {cart?.cartItems?.length ? cart?.cartItems?.length : 0}
+            </CartAmount>
           </Cart>
         </Right>
       </NavContent>

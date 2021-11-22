@@ -27,16 +27,8 @@ export const productsReducer = (state = {}, action) => {
     case GET_PRODUCTS_REQUEST:
       return { loading: true };
     case GET_PRODUCTS_SUCCESS:
-      const category = action.payload.category;
-      if (category) {
-        return {
-          loading: false,
-          products: action.payload.products.filter(
-            (product) => product.category === category.toLowerCase()
-          ),
-        };
-      }
-      return { loading: false, products: action.payload.data.products };
+      return { loading: false, products: action.payload.products };
+
     case GET_PRODUCTS_FAIL:
       return { loading: false, error: action.payload };
     case SEARCH_PRODUCTS_REQUEST:

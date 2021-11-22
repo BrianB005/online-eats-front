@@ -19,6 +19,7 @@ const Title = styled.div`
 const Span = styled.span`
   color: #082032;
   margin-right: 3px;
+  text-transform: capitalize;
 `;
 const Hr = styled.hr`
   width: 70px;

@@ -13,7 +13,7 @@ const Vendors = () => {
   }, [dispatch]);
   const vendors = useSelector((state) => state.admin);
   const { loading } = vendors;
-  console.log(vendors);
+  // console.log(vendors);
   if (loading) {
     return <Loader />;
   }

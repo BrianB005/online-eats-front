@@ -48,7 +48,7 @@ export const getProducts = (searchTerm) => async (dispatch, getState) => {
     const { data } = await Axios.get(
       "https://online-eats.herokuapp.com/api/v1/products"
     );
-    // console.log(data);
+    // console.log(data.products);
     dispatch({ type: GET_PRODUCTS_SUCCESS, payload: data, category });
   } catch (error) {
     dispatch({ type: GET_PRODUCTS_FAIL, payload: error });

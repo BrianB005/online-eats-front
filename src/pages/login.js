@@ -56,8 +56,8 @@ const Login = () => {
             Remember me?
           </Check>
           <Forgot>Forgot Password?</Forgot>
-          <Button type="submit" onClick={handleClick}>
-            {loading ? "Loading...." : "LOGIN"}
+          <Button type="submit" onClick={handleClick} disabled={loading}>
+            {loading ? "Logging In...." : "LOGIN"}
           </Button>
         </Form>
       </Wrapper>
@@ -171,6 +171,9 @@ const Button = styled.button`
   }
   color: white;
   cursor: pointer;
+  &:disabled {
+    cursor: not-allowed;
+  }
 `;
 const Register = styled.div`
   display: flex;
