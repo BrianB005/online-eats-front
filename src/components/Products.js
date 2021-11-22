@@ -15,7 +15,7 @@ const Products = () => {
 
   const allProducts = useSelector((state) => state.products);
   const { loading, products } = allProducts;
-  console.log(products);
+  // console.log(products);
   if (loading) {
     return <Loader />;
   }

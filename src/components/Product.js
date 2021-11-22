@@ -14,22 +14,23 @@ const Product = ({ _id, miniDescription, name, price, image }) => {
   };
   return (
     <Wrapper>
-      <Link to={`products/find/${_id}`}>
-        <ImageContainer>
-          {" "}
+      <ImageContainer>
+        {" "}
+        <Link to={`products/find/${_id}`}>
           <Image src={image} />
-          {userInfo && userInfo.user && userInfo.user.role === "vendor" && (
-            <AdminButtons>
-              <Link to={`/products/edit/${_id}`}>
-                <UpdateButton>Update</UpdateButton>
-              </Link>
-              <DeleteButton onClick={() => dispatch(deleteItem(_id))}>
-                Delete
-              </DeleteButton>
-            </AdminButtons>
-          )}
-        </ImageContainer>
-      </Link>
+        </Link>
+        {userInfo && userInfo.user && userInfo.user.role === "vendor" && (
+          <AdminButtons>
+            <Link to={`/products/edit/${_id}`}>
+              <UpdateButton>Update</UpdateButton>
+            </Link>
+            <DeleteButton onClick={() => dispatch(deleteItem(_id))}>
+              Delete
+            </DeleteButton>
+          </AdminButtons>
+        )}
+      </ImageContainer>
+
       <InfoContainer>
         <Link to={`products/find/${_id}`}>
           <Title>{name}</Title>
@@ -52,16 +53,13 @@ const Wrapper = styled.div`
   width: 400px;
   margin-bottom: 17px;
   margin-right: 17px;
-  /* height: 300px; */
-  /* background: lightgray; */
+
   border-radius: 6px;
   transition: all 0.3s linear;
   box-shadow: 1px 4px 13px lightgray;
   &:hover {
     box-shadow: 2px 4px 18px gray;
   }
-  /* margin-left: auto;
-  margin-right: auto; */
   display: flex;
   @media screen and (max-width: 600px) {
     width: 90vw;
@@ -73,11 +71,13 @@ const Wrapper = styled.div`
   }
 `;
 const ImageContainer = styled.div`
-  flex: 1;
+  /* flex: 2; */
   cursor: pointer;
   position: relative;
   height: 250px;
-  /* object-fit: contain; */
+  flex: 3;
+
+  display: flex;
   &:hover {
     opacity: 0.9;
   }
@@ -123,7 +123,7 @@ const UpdateButton = styled.button`
 `;
 
 const InfoContainer = styled.div`
-  flex: 1;
+  flex: 2;
   padding: 5px 12px;
 `;
 const Title = styled.h4`

@@ -7,9 +7,11 @@ import {
 } from "../constants/cartConstants";
 
 export const CartReducer = (state = { cartItems: [] }, action) => {
+  // console.log(action.payload);
   switch (action.type) {
     case ADD_TO_CART:
       const item = action.payload;
+
       const ItemExists = state.cartItems.find(
         (x) => x.product === item.product
       );
