@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { logout } from "../redux/actions/userActions";
 import { useNavigate } from "react-router-dom";
 const SuccessOrder = () => {
-  const userInfo = useSelector((state) => state.userSignin.userInfo);
+  const userInfo = useSelector((state) => state.userLogin.userInfo);
 
   const userName = userInfo?.user?.name;
   const dispatch = useDispatch();

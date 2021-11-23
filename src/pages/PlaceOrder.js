@@ -36,7 +36,7 @@ const PlaceOrder = () => {
         </Text>
       </ShippingInfo>
       <Payment>
-        Payment Method: <span Pay On Delivery></span>
+        Payment Method: <span>Pay On Delivery</span>
       </Payment>
       <Link to="/place-order/success">
         <Button onClick={handleClick}>PlaceOrder</Button>

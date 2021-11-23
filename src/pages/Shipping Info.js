@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { saveShippingAddress } from "../redux/actions/cartActions";
 const ShippingInfo = (props) => {
-  const userInfo = useSelector((state) => state.userSignin?.userInfo);
+  const userInfo = useSelector((state) => state.userLogin?.userInfo);
   const shippingInfo = useSelector((state) => state.cart.shippingAddress);
   const [address, setAddress] = useState({});
   const navigate = useNavigate();
@@ -59,6 +59,7 @@ const Wrapper = styled.div`
   background: #f4f4f4;
   width: 100vw;
   height: 100vh;
+  background: lightseagreen;
   align-items: center;
   padding-top: 20vh;
   /* justify-content: center; */
@@ -91,6 +92,7 @@ const Button = styled.button`
   padding: 8px;
   background: lightseagreen;
   border-radius: 11px;
+  border: 2px solid white;
   cursor: pointer;
   border: none;
   transition: all 0.3s linear;
