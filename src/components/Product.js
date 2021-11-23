@@ -10,7 +10,7 @@ const Product = ({ _id, miniDescription, name, price, image }) => {
   // console.log(_id);
   const addItemToCart = () => {
     dispatch(addToCart(_id));
-    // console.log(productId);
+    // console.log(_id);
   };
   return (
     <Wrapper>
@@ -43,7 +43,7 @@ const Product = ({ _id, miniDescription, name, price, image }) => {
           <Link to={`products/find/${_id}`}>
             <Button>Details</Button>
           </Link>
-          <Button onClick={addItemToCart}>Cart+</Button>
+          <Button onClick={() => addItemToCart()}>Cart+</Button>
         </ButtonsContainer>
       </InfoContainer>
     </Wrapper>

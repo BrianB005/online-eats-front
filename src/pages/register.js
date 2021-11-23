@@ -47,7 +47,7 @@ const Register = () => {
             required
           />
           {/* <Input placeholder="last name" /> */}
-          <Input placeholder="username (optional)" />
+          {/* <Input placeholder="username (optional)" /> */}
           <Input
             onChange={(e) => setEmail(e.target.value)}
             placeholder="email"

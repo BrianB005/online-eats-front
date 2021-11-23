@@ -5,3 +5,4 @@ export const CLEAR_CART = "CLEAR_CART";
 export const GET_TOTALS = "GET_TOTALS";
 
 export const CHANGE_COUNT = "CHANGE_COUNT";
+export const CART_SAVE_SHIPPING_ADDRESS = "CART_SAVE_SHIPPING_ADDRESS";

@@ -1,11 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 const CartTotals = () => {
   const cartTotals = useSelector((state) => state.cart);
   return (
     <TotalsWrapper>
-      <Button>CheckOut</Button>
+      <Link to="/shipping">
+        <Button>CheckOut</Button>
+      </Link>
       <Wrapper>
         <SubTotal>
           SubTotal : <Span> Kshs. {cartTotals?.totalAmount?.toFixed(2)}</Span>

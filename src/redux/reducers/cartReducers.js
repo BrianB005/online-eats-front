@@ -2,33 +2,27 @@ import {
   ADD_TO_CART,
   ADD_TO_CART_FAIL,
   CHANGE_COUNT,
+  CART_SAVE_SHIPPING_ADDRESS,
   GET_TOTALS,
   REMOVE_FROM_CART,
 } from "../constants/cartConstants";
 
 export const CartReducer = (state = { cartItems: [] }, action) => {
-  // console.log(action.payload);
   switch (action.type) {
     case ADD_TO_CART:
       const item = action.payload;
-
-      const ItemExists = state.cartItems.find(
+      const itemExists = state.cartItems.find(
         (x) => x.product === item.product
       );
-      if (ItemExists) {
+      if (itemExists) {
         return {
           ...state,
-          error: "",
           cartItems: state.cartItems.map((x) =>
-            x.product === ItemExists.product ? item : x
+            x.product === itemExists.product ? item : x
           ),
         };
       } else {
-        return {
-          ...state,
-          error: "",
-          cartItems: [...state.cartItems, item],
-        };
+        return { ...state, cartItems: [...state.cartItems, item] };
       }
     case ADD_TO_CART_FAIL:
       return { ...state, loading: false, error: action.payload };
@@ -70,6 +64,8 @@ export const CartReducer = (state = { cartItems: [] }, action) => {
         ...state,
         cartItems: updatedCart,
       };
+    case CART_SAVE_SHIPPING_ADDRESS:
+      return { ...state, shippingAddress: action.payload };
 
     default:
       return state;

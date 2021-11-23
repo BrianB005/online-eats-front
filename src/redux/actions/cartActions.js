@@ -5,6 +5,7 @@ import {
   GET_TOTALS,
   // ADD_TO_CART_FAIL,
   REMOVE_FROM_CART,
+  CART_SAVE_SHIPPING_ADDRESS,
 } from "../constants/cartConstants";
 
 export const addToCart = (productId) => async (dispatch, getState) => {
@@ -24,6 +25,11 @@ export const addToCart = (productId) => async (dispatch, getState) => {
     },
   });
   localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
+};
+
+export const saveShippingAddress = (productData) => (dispatch) => {
+  dispatch({ type: CART_SAVE_SHIPPING_ADDRESS, payload: productData });
+  localStorage.setItem("shippingAddress", JSON.stringify(productData));
 };
 
 export const removeFromCart = (productId) => (dispatch, getState) => {

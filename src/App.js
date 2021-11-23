@@ -19,6 +19,10 @@ import User from "./pages/User";
 import Users from "./pages/admin/users";
 import Admins from "./pages/admin/admins";
 import Vendors from "./pages/admin/vendors";
+import SuccessOrder from "./pages/SuccesOrder";
+import PlaceOrder from "./pages/PlaceOrder";
+import ShippingInfo from "./pages/Shipping Info";
+
 function App() {
   return (
     <Router>
@@ -45,7 +49,9 @@ function App() {
         <Route path="/admin/vendors" element={<Vendors />} />
         <Route path="/admin/admins" element={<Admins />} />
         <Route path="/admin/users/:id" element={<User />} />
-
+        <Route path="/shipping" element={<ShippingInfo />} />
+        <Route path="/place-order" element={<PlaceOrder />} />
+        <Route path="place-order/success" element={<SuccessOrder />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </Router>
