@@ -23,9 +23,11 @@ const CreateProduct = () => {
       navigate("/");
     }
   }, [navigate, userInfo]);
-  if (success) {
-    setValue({});
-  }
+  useEffect(() => {
+    if (success) {
+      setValue({});
+    }
+  }, [success]);
 
   // console.log(value);
   const handleChange = (e) => {
