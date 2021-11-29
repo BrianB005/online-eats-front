@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { addToCart } from "../redux/actions/cartActions";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteItem } from "../redux/actions/productActions";
+import { deleteItem, getProducts } from "../redux/actions/productActions";
+
 const Product = ({ _id, miniDescription, name, price, image }) => {
   const userInfo = useSelector((state) => state.userLogin.userInfo);
+  const deletingItem = useSelector((state) => state.deleteProduct);
+
+  const { success } = deletingItem;
   const dispatch = useDispatch();
-  // console.log(_id);
+
   const addItemToCart = () => {
     dispatch(addToCart(_id));
-    // console.log(_id);
   };
+  const handleDelete = () => {
+    dispatch(deleteItem(_id));
+  };
+  useEffect(() => {
+    if (success) {
+      dispatch(getProducts());
+    }
+  }, [success, dispatch]);
   return (
     <Wrapper>
       <ImageContainer>
@@ -24,9 +35,7 @@ const Product = ({ _id, miniDescription, name, price, image }) => {
             <Link to={`/products/edit/${_id}`}>
               <UpdateButton>Update</UpdateButton>
             </Link>
-            <DeleteButton onClick={() => dispatch(deleteItem(_id))}>
-              Delete
-            </DeleteButton>
+            <DeleteButton onClick={handleDelete}>Delete</DeleteButton>
           </AdminButtons>
         )}
       </ImageContainer>

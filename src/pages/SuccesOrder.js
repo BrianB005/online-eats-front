@@ -39,7 +39,7 @@ const SuccessOrder = () => {
 
 const Container = styled.div`
   width: 100vw;
-  height: 89vh;
+  height: 100vh;
 
   display: flex;
   justify-content: center;
@@ -51,7 +51,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 25px;
-  background: lightcoral;
+  background: #17a7a0;
   box-shadow: 6px 7px 22px pink;
   border-radius: 6px;
   width: 90vw;
@@ -81,13 +81,13 @@ const Title = styled.h2`
   font-size: 22px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   span {
-    color: deeppink;
+    color: #082032;
     text-decoration: underline;
   }
 `;
 
 const Text = styled.h4`
-  color: gray;
+  color: #082032;
   margin-bottom: 8px;
   font-size: 17px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",

@@ -59,9 +59,10 @@ const Wrapper = styled.div`
   background: #f4f4f4;
   width: 100vw;
   height: 100vh;
-  background: lightseagreen;
+  /* background: lightseagreen; */
   align-items: center;
   padding-top: 20vh;
+  background: gray;
   /* justify-content: center; */
   display: flex;
   flex-direction: column;
