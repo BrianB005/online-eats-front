@@ -8,20 +8,30 @@ import { getProduct, updateItem } from "../redux/actions/productActions";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Loader from "../components/Loader";
+// import { useNavigate } from "react-router-dom";
 const EditItem = () => {
   const location = useLocation();
   const productId = location.pathname.split("/")[3];
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProduct(productId));
-    return () => dispatch(getProduct());
   }, [dispatch, productId]);
 
   const updateProduct = useSelector((state) => state.updateProduct);
   const singlProduct = useSelector((state) => state.product);
   const { product, loading } = singlProduct;
-
+  // const navigate = useNavigate();
   const [name, setName] = useState(product?.name);
+  // useEffect(() => {
+  // if (updateProduct.success) {
+  //   alert("product updated successfully");
+  //   navigate("/");
+  // }
+  // }, [updateProduct.success, navigate]);
+  // if (updateProduct.success) {
+  //   alert("product updated successfully");
+  //   navigate("/");
+  // }
   const [price, setPrice] = useState(product?.price);
   const [category, setCategory] = useState(product?.category);
   const [miniDescription, setMiniDescription] = useState(
@@ -35,6 +45,7 @@ const EditItem = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     dispatch(
       updateItem({
         product: {

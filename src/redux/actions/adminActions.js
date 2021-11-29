@@ -95,12 +95,12 @@ export const getAllVendors = () => async (dispatch, getState) => {
 
 export const updateRole = (user) => async (dispatch, getState) => {
   const userInfo = getState().userLogin.userInfo;
-  console.log(user.id);
+  // console.log(user.id);
   dispatch({ type: UPDATE_USER_ROLE_REQUEST, payload: user });
   try {
     const { data } = await axios.patch(
       `https://online-eats.herokuapp.com/api/v1/users/find/${user.id}`,
-      user.role,
+      { role: user.role },
       {
         headers: {
           authorization: `Bearer ${userInfo.token}`,

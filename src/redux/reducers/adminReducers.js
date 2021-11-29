@@ -34,7 +34,7 @@ export const adminReducers = (state = {}, action) => {
     case GET_ALL_VENDORS_REQUEST:
       return { loading: true };
     case GET_ALL_VENDORS_SUCCESS:
-      return { loading: false, admins: action.payload };
+      return { loading: false, vendors: action.payload };
     case GET_ALL_VENDORS_FAIL:
       return { loading: false, error: action.payload };
 

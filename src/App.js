@@ -15,7 +15,6 @@ import Cart from "./pages/Cart";
 import AdminPanel from "./pages/admin/AdminPanel";
 import AddProduct from "./pages/AddProduct";
 import EditItem from "./pages/EditItem";
-import User from "./pages/User";
 import Users from "./pages/admin/users";
 import Admins from "./pages/admin/admins";
 import Vendors from "./pages/admin/vendors";
@@ -48,7 +47,6 @@ function App() {
         <Route path="/admin/users" element={<Users />} />
         <Route path="/admin/vendors" element={<Vendors />} />
         <Route path="/admin/admins" element={<Admins />} />
-        <Route path="/admin/users/:id" element={<User />} />
         <Route path="/shipping" element={<ShippingInfo />} />
         <Route path="/place-order" element={<PlaceOrder />} />
         <Route path="place-order/success" element={<SuccessOrder />} />
