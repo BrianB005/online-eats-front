@@ -19,6 +19,7 @@ const Users = () => {
       alert(msg.msg);
       dispatch(getAllUsers());
     }
+
     // eslint-disable-next-line
   }, [success, msg]);
 

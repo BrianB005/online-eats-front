@@ -26,6 +26,7 @@ const CreateProduct = () => {
   }, [navigate, userInfo]);
   useEffect(() => {
     if (success) {
+      alert("Item added successfully");
       setValue([]);
     }
   }, [success]);
