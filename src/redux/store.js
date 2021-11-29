@@ -1,6 +1,9 @@
 import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import thunk from "redux-thunk";
-import { adminReducers } from "./reducers/adminReducers";
+import {
+  getAlladminReducers,
+  updateUsersReducer,
+} from "./reducers/adminReducers";
 import { alertReducer } from "./reducers/alertReducers";
 import { CartReducer } from "./reducers/cartReducers";
 import { categoryReducer } from "./reducers/categoryReducers";
@@ -39,7 +42,8 @@ const reducer = combineReducers({
   createProduct: createProductReducer,
   deleteProduct: deleteProductReducer,
   updateProduct: updateProductReducer,
-  admin: adminReducers,
+  admin: getAlladminReducers,
+  updateUser: updateUsersReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -13,9 +13,16 @@ const Admins = () => {
     // eslint-disable-next-line
   }, [dispatch]);
   const admins = useSelector((state) => state.admin);
-  const { loading } = admins;
-
-  if (loading) {
+  // const { loading } = admins;
+  const { success, msg, loading } = useSelector((state) => state.updateUser);
+  useEffect(() => {
+    if (success) {
+      alert(msg.msg);
+      dispatch(getAllAdmins());
+    }
+    // eslint-disable-next-line
+  }, [success, msg]);
+  if (admins.loading) {
     return <Loader />;
   }
   return (
@@ -43,6 +50,7 @@ const Admins = () => {
                   onClick={() =>
                     dispatch(updateRole({ id: user._id, role: "vendor" }))
                   }
+                  disabled={loading}
                 >
                   Make Vendor
                 </Button>
@@ -50,6 +58,7 @@ const Admins = () => {
                   onClick={() =>
                     dispatch(updateRole({ id: user._id, role: "user" }))
                   }
+                  disabled={loading}
                 >
                   Demote
                 </Button>
@@ -111,6 +120,9 @@ const Button = styled.button`
   justify-content: center;
   padding: 8px 16px;
   background-color: #082032;
+  &:disabled {
+    cursor: not-allowed;
+  }
   &:hover {
     opacity: 0.8;
   }

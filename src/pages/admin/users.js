@@ -8,19 +8,28 @@ import Loader from "../../components/Loader";
 const Users = () => {
   // console.log(role);
   const dispatch = useDispatch();
+  const users = useSelector((state) => state.admin);
+
+  const handleClick = (id) => {
+    dispatch(updateRole({ id: id, role: "vendor" }));
+  };
+  const { success, msg, loading } = useSelector((state) => state.updateUser);
+  useEffect(() => {
+    if (success) {
+      alert(msg.msg);
+      dispatch(getAllUsers());
+    }
+    // eslint-disable-next-line
+  }, [success, msg]);
+
   useEffect(() => {
     dispatch(getAllUsers());
     // eslint-disable-next-line
   }, []);
-  const users = useSelector((state) => state.admin);
-
-  const { loading } = users;
-  const handleClick = (id) => {
-    dispatch(updateRole({ id: id, role: "vendor" }));
-  };
-  if (loading) {
+  if (users.loading) {
     return <Loader />;
   }
+
   return (
     <ColumnWrapper>
       <Link to="/admin">
@@ -42,11 +51,15 @@ const Users = () => {
               <Column>{user.email}</Column>
               <Column>{new Date(user.createdAt).toDateString()}</Column>
               <Column>{user.role}</Column>
-              <Button onClick={() => handleClick(user._id)}>Make Vendor</Button>
+              <Button onClick={() => handleClick(user._id)} disabled={loading}>
+                {" "}
+                Make Vendor
+              </Button>
               <Button
                 onClick={() =>
                   dispatch(updateRole({ id: user._id, role: "admin" }))
                 }
+                disabled={loading}
               >
                 Make Admin
               </Button>
@@ -102,6 +115,9 @@ const Button = styled.button`
   justify-content: center;
   padding: 8px 16px;
   background-color: #082032;
+  &:disabled {
+    cursor: not-allowed;
+  }
   &:hover {
     opacity: 0.8;
   }

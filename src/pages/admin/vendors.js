@@ -19,6 +19,14 @@ const Vendors = () => {
   const handleClick = (id) => {
     dispatch(updateRole({ id: id, role: "user" }));
   };
+  const { success, msg } = useSelector((state) => state.updateUser);
+  useEffect(() => {
+    if (success) {
+      alert(msg.msg);
+      dispatch(getAllVendors());
+    }
+    // eslint-disable-next-line
+  }, [success, msg]);
   if (loading) {
     return <Loader />;
   }

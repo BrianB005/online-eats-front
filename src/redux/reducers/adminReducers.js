@@ -16,7 +16,7 @@ import {
   UPDATE_USER_ROLE_SUCCESS,
 } from "../constants/adminConstants";
 
-export const adminReducers = (state = {}, action) => {
+export const getAlladminReducers = (state = {}, action) => {
   switch (action.type) {
     case GET_ALL_USERS_REQUEST:
       return { loading: true };
@@ -37,13 +37,18 @@ export const adminReducers = (state = {}, action) => {
       return { loading: false, vendors: action.payload };
     case GET_ALL_VENDORS_FAIL:
       return { loading: false, error: action.payload };
-
+    default:
+      return state;
+  }
+};
+export const updateUsersReducer = (state = {}, action) => {
+  switch (action.type) {
     case UPDATE_USER_ROLE_REQUEST:
       return { loading: true };
     case UPDATE_USER_ROLE_SUCCESS:
-      return { loading: false, user: action.payload };
+      return { loading: false, msg: action.payload, success: true };
     case UPDATE_USER_ROLE_FAIL:
-      return { loading: false, payload: action.payload };
+      return { loading: false, error: action.payload };
     case GET_USER_REQUEST:
       return { loading: true };
     case GET_USER_SUCCESS:
