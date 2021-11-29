@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { addToCart } from "../redux/actions/cartActions";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { deleteItem, getProducts } from "../redux/actions/productActions";
+import { Link, useNavigate } from "react-router-dom";
+import { deleteItem } from "../redux/actions/productActions";
 
 const Product = ({ _id, miniDescription, name, price, image }) => {
   const userInfo = useSelector((state) => state.userLogin.userInfo);
@@ -11,7 +11,7 @@ const Product = ({ _id, miniDescription, name, price, image }) => {
 
   const { success } = deletingItem;
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const addItemToCart = () => {
     dispatch(addToCart(_id));
   };
@@ -20,9 +20,10 @@ const Product = ({ _id, miniDescription, name, price, image }) => {
   };
   useEffect(() => {
     if (success) {
-      dispatch(getProducts());
+      navigate("/");
+      // dispatch(getProducts());
     }
-  }, [success, dispatch]);
+  }, [success, navigate]);
   return (
     <Wrapper>
       <ImageContainer>

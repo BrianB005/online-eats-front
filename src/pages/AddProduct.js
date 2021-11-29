@@ -5,13 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../redux/actions/productActions";
 const CreateProduct = () => {
-  const [value, setValue] = useState({});
+  const [value, setValue] = useState([]);
 
   const dispatch = useDispatch();
   const addItem = useSelector((state) => state.createProduct);
   const userInfo = useSelector((state) => state.userLogin?.userInfo);
   // console.log(userInfo.user);
   const { loading, error, success } = addItem;
+  console.log(success);
   console.log(error);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +26,7 @@ const CreateProduct = () => {
   }, [navigate, userInfo]);
   useEffect(() => {
     if (success) {
-      setValue({});
+      setValue([]);
     }
   }, [success]);
 
